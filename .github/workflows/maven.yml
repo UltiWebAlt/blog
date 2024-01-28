@@ -15,6 +15,10 @@ on:
     branches: ['master']
 
 jobs:
+  permissions:
+    contents: 'read'
+    id-token: 'write'
+    issues: 'write' #__This fixed the HttpError: Resource not accessible by integration
   build:
     runs-on: ubuntu-latest
 
@@ -26,6 +30,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+          github_token: ${{ secrets.github_token }}
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
