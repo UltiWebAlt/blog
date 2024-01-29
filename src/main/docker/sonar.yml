@@ -12,4 +12,12 @@ services:
     # remove the "127.0.0.1:" prefix
     ports:
       - 127.0.0.1:9001:9000
-      - 127.0.0.1:9000:9000
+      - 127.0.0.1:9002:9000
+    volumes:
+      - data:/opt/sonarqube/data
+      - logs:/opt/sonarqube/logs
+      - extensions:/opt/sonarqube/extensions
+volumes:
+  data:
+  logs:
+  extensions:
