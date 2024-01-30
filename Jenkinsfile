@@ -27,7 +27,7 @@ node {
     stage('backend tests') {
         try {
             sh "./mvnw -ntp verify -P-webapp"
-        } catch(err) {
+        } catch (err) {
             throw err
         } finally {
             junit '**/target/surefire-reports/TEST-*.xml,**/target/failsafe-reports/TEST-*.xml'
@@ -37,7 +37,7 @@ node {
     stage('frontend tests') {
         try {
             sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm -Dfrontend.npm.arguments='run test'"
-        } catch(err) {
+        } catch (err) {
             throw err
         } finally {
             junit '**/target/test-results/TESTS-results-jest.xml'
@@ -51,6 +51,15 @@ node {
     stage('quality analysis') {
         withSonarQubeEnv('Docker SonarQube') {
             sh "./mvnw -ntp initialize sonar:sonar"
+        }
+    }
+
+    stage("Quality Gate") {
+        timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+            def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+            if (qg.status != 'OK') {
+                error "Pipeline aborted due to quality gate failure: ${qg.status}"
+            }
         }
     }
 }
