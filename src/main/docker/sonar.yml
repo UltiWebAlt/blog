@@ -14,10 +14,13 @@ services:
       - 127.0.0.1:9001:9000
       - 127.0.0.1:9002:9000
     volumes:
-      - data:/opt/sonarqube/data
-      - logs:/opt/sonarqube/logs
-      - extensions:/opt/sonarqube/extensions
+      - sonar-data:/opt/sonarqube/data
+      - sonar-logs:/opt/sonarqube/logs
+      - sonar-extensions:/opt/sonarqube/extensions
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
 volumes:
-  data:
-  logs:
-  extensions:
+  sonar-data:
+  sonar-logs:
+  sonar-extensions:

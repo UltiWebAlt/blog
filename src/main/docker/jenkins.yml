@@ -3,7 +3,7 @@ include:
   - ./sonar.yml
 services:
   jenkins:
-    image: jenkins/jenkins:lts-jdk17
+    image: jenkins/jenkins:lts-jdk17-node18
     ports:
       - 49001:8080
       - 50000:50000
@@ -11,7 +11,11 @@ services:
     #privileged: true
     volumes:
       # enable persistent volume (warning: make sure that the local jenkins_home folder is created)
-      - ~/Applications/Jenkins:/var/jenkins_home
+      - jenkins-data:/var/jenkins_home
     # mount docker sock and binary for docker in docker (only works on linux)
     #- /var/run/docker.sock:/var/run/docker.sock
     #- /usr/bin/docker:/usr/bin/docker
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+volumes:
+  jenkins-data:
