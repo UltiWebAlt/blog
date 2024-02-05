@@ -7,7 +7,7 @@ services:
     ports:
       - '80:80'
     environment:
-      - NGINX_HOST=rbmint.ultiweb.com
+      - NGINX_HOST=host.docker.internal
       - NGINX_PORT=80
     extra_hosts:
       - 'host.docker.internal:host-gateway'
