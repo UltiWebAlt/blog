@@ -1,5 +1,10 @@
 name: Application CI
-on: [push, pull_request]
+on:
+  push:
+    branches: ['develop']
+  pull_request:
+    branches: ['develop']
+  workflow_dispatch:
 jobs:
   pipeline:
     name: blog pipeline
@@ -22,7 +27,7 @@ jobs:
           distribution: 'temurin'
           java-version: 17
       - name: Install node.js packages
-        run: npm install
+        run: npm ci
       - name: Run backend test
         run: |
           chmod +x mvnw
@@ -42,4 +47,5 @@ jobs:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: 'E2E: Teardown'
+        if: always()
         run: npm run ci:e2e:teardown
