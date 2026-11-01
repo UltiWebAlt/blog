@@ -12,4 +12,15 @@ services:
     # remove the "127.0.0.1:" prefix
     ports:
       - 127.0.0.1:9001:9000
-      - 127.0.0.1:9000:9000
+      - 127.0.0.1:9002:9000
+    volumes:
+      - sonar-data:/opt/sonarqube/data
+      - sonar-logs:/opt/sonarqube/logs
+      - sonar-extensions:/opt/sonarqube/extensions
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+volumes:
+  sonar-data:
+  sonar-logs:
+  sonar-extensions:

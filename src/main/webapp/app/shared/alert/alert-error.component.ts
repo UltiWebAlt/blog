@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -10,9 +10,9 @@ import { EventManager, EventWithContent } from 'app/core/util/event-manager.serv
 import { AlertError } from './alert-error.model';
 
 @Component({
-  standalone: true,
   selector: 'jhi-alert-error',
   templateUrl: './alert-error.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, NgbModule],
 })
 export class AlertErrorComponent implements OnDestroy {

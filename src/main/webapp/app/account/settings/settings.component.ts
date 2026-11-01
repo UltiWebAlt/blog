@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -11,8 +11,8 @@ const initialAccount: Account = {} as Account;
 
 @Component({
   selector: 'jhi-settings',
-  standalone: true,
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './settings.component.html',
 })
 export default class SettingsComponent implements OnInit {

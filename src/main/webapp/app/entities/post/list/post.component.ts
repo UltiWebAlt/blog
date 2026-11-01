@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Data, ParamMap, Router, RouterModule } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
@@ -19,9 +19,9 @@ import { EntityArrayResponseType, PostService } from '../service/post.service';
 import { IPost } from '../post.model';
 
 @Component({
-  standalone: true,
   selector: 'jhi-post',
   templateUrl: './post.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RouterModule,
     FormsModule,

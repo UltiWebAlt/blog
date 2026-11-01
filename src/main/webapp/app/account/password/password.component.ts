@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -10,8 +10,8 @@ import PasswordStrengthBarComponent from './password-strength-bar/password-stren
 
 @Component({
   selector: 'jhi-password',
-  standalone: true,
   imports: [SharedModule, FormsModule, ReactiveFormsModule, PasswordStrengthBarComponent],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './password.component.html',
 })
 export default class PasswordComponent implements OnInit {

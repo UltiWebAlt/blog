@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Data, ParamMap, Router, RouterModule } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
@@ -18,9 +18,9 @@ import { TagDeleteDialogComponent } from '../delete/tag-delete-dialog.component'
 import { ITag } from '../tag.model';
 
 @Component({
-  standalone: true,
   selector: 'jhi-tag',
   templateUrl: './tag.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RouterModule,
     FormsModule,

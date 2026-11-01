@@ -1,6 +1,6 @@
 jest.mock('app/core/auth/account.service');
 
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
@@ -12,6 +12,8 @@ import HasAnyAuthorityDirective from './has-any-authority.directive';
 
 @Component({
   template: ` <div *jhiHasAnyAuthority="'ROLE_ADMIN'" #content></div> `,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class TestHasAnyAuthorityDirectiveComponent {
   @ViewChild('content', { static: false })

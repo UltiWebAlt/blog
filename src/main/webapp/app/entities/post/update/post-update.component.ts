@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -19,9 +19,9 @@ import { IPost } from '../post.model';
 import { PostFormService, PostFormGroup } from './post-form.service';
 
 @Component({
-  standalone: true,
   selector: 'jhi-post-update',
   templateUrl: './post-update.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class PostUpdateComponent implements OnInit {

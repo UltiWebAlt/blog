@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -7,9 +7,9 @@ import { User } from '../user-management.model';
 import { UserManagementService } from '../service/user-management.service';
 
 @Component({
-  standalone: true,
   selector: 'jhi-user-mgmt-delete-dialog',
   templateUrl: './user-management-delete-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule, FormsModule],
 })
 export default class UserManagementDeleteDialogComponent {

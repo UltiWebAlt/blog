@@ -1,12 +1,12 @@
-import { Component, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Input, Renderer2, ChangeDetectionStrategy } from '@angular/core';
 
 import SharedModule from 'app/shared/shared.module';
 
 @Component({
   selector: 'jhi-password-strength-bar',
-  standalone: true,
   imports: [SharedModule],
   templateUrl: './password-strength-bar.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './password-strength-bar.component.scss',
 })
 export default class PasswordStrengthBarComponent {

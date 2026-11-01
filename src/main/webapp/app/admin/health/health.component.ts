@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,9 +8,9 @@ import { Health, HealthDetails, HealthStatus } from './health.model';
 import HealthModalComponent from './modal/health-modal.component';
 
 @Component({
-  standalone: true,
   selector: 'jhi-health',
   templateUrl: './health.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule, HealthModalComponent],
 })
 export default class HealthComponent implements OnInit {

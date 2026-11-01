@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,8 +8,8 @@ import { IBlog } from '../blog.model';
 import { BlogService } from '../service/blog.service';
 
 @Component({
-  standalone: true,
   templateUrl: './blog-delete-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule, FormsModule],
 })
 export class BlogDeleteDialogComponent {

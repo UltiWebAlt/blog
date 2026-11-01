@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import SharedModule from 'app/shared/shared.module';
 
 @Component({
-  standalone: true,
   selector: 'jhi-error',
   templateUrl: './error.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule],
 })
 export default class ErrorComponent implements OnInit, OnDestroy {

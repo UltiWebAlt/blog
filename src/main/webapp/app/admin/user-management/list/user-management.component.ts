@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpHeaders } from '@angular/common/http';
 import { combineLatest } from 'rxjs';
@@ -16,9 +16,9 @@ import { User } from '../user-management.model';
 import UserManagementDeleteDialogComponent from '../delete/user-management-delete-dialog.component';
 
 @Component({
-  standalone: true,
   selector: 'jhi-user-mgmt',
   templateUrl: './user-management.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RouterModule, SharedModule, SortDirective, SortByDirective, UserManagementDeleteDialogComponent, ItemCountComponent],
 })
 export default class UserManagementComponent implements OnInit {

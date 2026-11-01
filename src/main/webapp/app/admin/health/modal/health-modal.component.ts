@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import SharedModule from 'app/shared/shared.module';
 import { HealthKey, HealthDetails } from '../health.model';
 
 @Component({
-  standalone: true,
   selector: 'jhi-health-modal',
   templateUrl: './health-modal.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule],
 })
 export default class HealthModalComponent {

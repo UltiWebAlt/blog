@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,8 +11,8 @@ import { RegisterService } from './register.service';
 
 @Component({
   selector: 'jhi-register',
-  standalone: true,
   imports: [SharedModule, RouterModule, FormsModule, ReactiveFormsModule, PasswordStrengthBarComponent],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './register.component.html',
 })
 export default class RegisterComponent implements AfterViewInit {

@@ -30,6 +30,7 @@ local.properties
 .settings/
 .loadpath
 .factorypath
+.scannerwork
 
 # External tool builders
 .externalToolBuilders/**

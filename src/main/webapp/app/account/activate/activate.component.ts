@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { mergeMap } from 'rxjs/operators';
 
@@ -7,8 +7,8 @@ import { ActivateService } from './activate.service';
 
 @Component({
   selector: 'jhi-activate',
-  standalone: true,
   imports: [SharedModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './activate.component.html',
 })
 export default class ActivateComponent implements OnInit {
