@@ -147,7 +147,7 @@
     "jest-preset-angular": "^17.0.3",
     "jest-sonar": "^0.2.16",
     "jest-sonar-reporter": "^2.0.0",
-    "jsdom": "^28",
+    "jsdom": "^30",
     "lighthouse": "11.3.0",
     "lint-staged": "15.2.0",
     "merge-jsons-webpack-plugin": "2.0.1",
