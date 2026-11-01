@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -6,6 +6,8 @@ import TranslateDirective from './translate.directive';
 
 @Component({
   template: ` <div jhiTranslate="test"></div> `,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 class TestTranslateDirectiveComponent {}
 

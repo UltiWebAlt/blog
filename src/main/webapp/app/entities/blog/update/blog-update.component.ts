@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -14,9 +14,9 @@ import { BlogService } from '../service/blog.service';
 import { BlogFormService, BlogFormGroup } from './blog-form.service';
 
 @Component({
-  standalone: true,
   selector: 'jhi-blog-update',
   templateUrl: './blog-update.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class BlogUpdateComponent implements OnInit {

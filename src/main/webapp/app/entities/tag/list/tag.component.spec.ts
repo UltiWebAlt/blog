@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpHeaders, HttpResponse, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
@@ -18,7 +18,7 @@ describe('Tag Management Component', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes([{ path: 'tag', component: TagComponent }]), HttpClientTestingModule, TagComponent],
+      imports: [RouterTestingModule.withRoutes([{ path: 'tag', component: TagComponent }]), TagComponent],
       providers: [
         {
           provide: ActivatedRoute,
@@ -36,6 +36,8 @@ describe('Tag Management Component', () => {
             snapshot: { queryParams: {} },
           },
         },
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     })
       .overrideTemplate(TagComponent, '')

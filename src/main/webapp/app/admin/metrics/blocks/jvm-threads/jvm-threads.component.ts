@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import SharedModule from 'app/shared/shared.module';
@@ -6,9 +6,9 @@ import { Thread, ThreadState } from 'app/admin/metrics/metrics.model';
 import { MetricsModalThreadsComponent } from '../metrics-modal-threads/metrics-modal-threads.component';
 
 @Component({
-  standalone: true,
   selector: 'jhi-jvm-threads',
   templateUrl: './jvm-threads.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule],
 })
 export class JvmThreadsComponent {

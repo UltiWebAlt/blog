@@ -7,7 +7,6 @@ const environment = require('./webpack/environment');
 
 module.exports = {
   transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|dayjs/esm)'],
-  resolver: 'jest-preset-angular/build/resolvers/ng-jest-resolver.js',
   globals: {
     ...environment,
   },

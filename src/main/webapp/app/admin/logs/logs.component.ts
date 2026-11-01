@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
 import SharedModule from 'app/shared/shared.module';
@@ -8,9 +8,9 @@ import { Log, LoggersResponse, Level } from './log.model';
 import { LogsService } from './logs.service';
 
 @Component({
-  standalone: true,
   selector: 'jhi-logs',
   templateUrl: './logs.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule, FormsModule, SortDirective, SortByDirective],
 })
 export default class LogsComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Data, ParamMap, Router, RouterModule } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -14,9 +14,9 @@ import { EntityArrayResponseType, BlogService } from '../service/blog.service';
 import { BlogDeleteDialogComponent } from '../delete/blog-delete-dialog.component';
 
 @Component({
-  standalone: true,
   selector: 'jhi-blog',
   templateUrl: './blog.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RouterModule,
     FormsModule,

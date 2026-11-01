@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,8 +8,8 @@ import { IPost } from '../post.model';
 import { PostService } from '../service/post.service';
 
 @Component({
-  standalone: true,
   templateUrl: './post-delete-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule, FormsModule],
 })
 export class PostDeleteDialogComponent {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import SharedModule from 'app/shared/shared.module';
@@ -6,9 +6,9 @@ import { DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe } from 'ap
 import { ITag } from '../tag.model';
 
 @Component({
-  standalone: true,
   selector: 'jhi-tag-detail',
   templateUrl: './tag-detail.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe],
 })
 export class TagDetailComponent {

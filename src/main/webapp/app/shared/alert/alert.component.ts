@@ -1,13 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AlertService, Alert } from 'app/core/util/alert.service';
 
 @Component({
-  standalone: true,
   selector: 'jhi-alert',
   templateUrl: './alert.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, NgbModule],
 })
 export class AlertComponent implements OnInit, OnDestroy {

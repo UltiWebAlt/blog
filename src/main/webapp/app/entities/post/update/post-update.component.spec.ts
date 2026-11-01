@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpResponse } from '@angular/common/http';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpResponse, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -27,7 +27,7 @@ describe('Post Management Update Component', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([]), PostUpdateComponent],
+      imports: [RouterTestingModule.withRoutes([]), PostUpdateComponent],
       providers: [
         FormBuilder,
         {
@@ -36,6 +36,8 @@ describe('Post Management Update Component', () => {
             params: from([{}]),
           },
         },
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     })
       .overrideTemplate(PostUpdateComponent, '')

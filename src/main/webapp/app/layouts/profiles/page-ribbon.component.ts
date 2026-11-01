@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -6,7 +6,6 @@ import SharedModule from 'app/shared/shared.module';
 import { ProfileService } from './profile.service';
 
 @Component({
-  standalone: true,
   selector: 'jhi-page-ribbon',
   template: `
     @if (ribbonEnv$ | async; as ribbonEnv) {
@@ -16,6 +15,7 @@ import { ProfileService } from './profile.service';
     }
   `,
   styleUrl: './page-ribbon.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule],
 })
 export default class PageRibbonComponent implements OnInit {

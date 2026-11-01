@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import locale from '@angular/common/locales/en';
 import dayjs from 'dayjs/esm';
@@ -12,8 +12,8 @@ import MainComponent from './layouts/main/main.component';
 
 @Component({
   selector: 'jhi-app',
-  standalone: true,
   template: '<jhi-main></jhi-main>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MainComponent,
     // jhipster-needle-angular-add-module JHipster will add new module here

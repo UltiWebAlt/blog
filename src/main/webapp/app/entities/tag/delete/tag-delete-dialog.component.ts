@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,8 +8,8 @@ import { ITag } from '../tag.model';
 import { TagService } from '../service/tag.service';
 
 @Component({
-  standalone: true,
   templateUrl: './tag-delete-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule, FormsModule],
 })
 export class TagDeleteDialogComponent {

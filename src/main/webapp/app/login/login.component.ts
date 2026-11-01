@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
@@ -8,8 +8,8 @@ import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-login',
-  standalone: true,
   imports: [SharedModule, FormsModule, ReactiveFormsModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './login.component.html',
 })
 export default class LoginComponent implements OnInit, AfterViewInit {
@@ -47,7 +47,7 @@ export default class LoginComponent implements OnInit, AfterViewInit {
     this.loginService.login(this.loginForm.getRawValue()).subscribe({
       next: () => {
         this.authenticationError = false;
-        if (!this.router.getCurrentNavigation()) {
+        if (!this.router.currentNavigation()) {
           // There were no routing during login (eg from navigationToStoredUrl)
           this.router.navigate(['']);
         }

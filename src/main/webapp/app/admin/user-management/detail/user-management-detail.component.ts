@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import SharedModule from 'app/shared/shared.module';
 
 import { User } from '../user-management.model';
 
 @Component({
-  standalone: true,
   selector: 'jhi-user-mgmt-detail',
   templateUrl: './user-management-detail.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule],
 })
 export default class UserManagementDetailComponent implements OnInit {

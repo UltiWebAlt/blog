@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -12,9 +12,9 @@ import { TagService } from '../service/tag.service';
 import { TagFormService, TagFormGroup } from './tag-form.service';
 
 @Component({
-  standalone: true,
   selector: 'jhi-tag-update',
   templateUrl: './tag-update.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class TagUpdateComponent implements OnInit {

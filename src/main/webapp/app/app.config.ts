@@ -1,8 +1,8 @@
 import { ApplicationConfig, LOCALE_ID, importProvidersFrom } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { RouterFeatures, TitleStrategy, provideRouter, withComponentInputBinding, withDebugTracing } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { HttpClientModule } from '@angular/common/http';
 
 import { NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
