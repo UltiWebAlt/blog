@@ -61,7 +61,7 @@
         <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
         <maven-idea-plugin.version>2.2.1</maven-idea-plugin.version>
         <maven-site-plugin.version>3.12.1</maven-site-plugin.version>
-        <modernizer-maven-plugin.version>2.7.0</modernizer-maven-plugin.version>
+        <modernizer-maven-plugin.version>3.5.0</modernizer-maven-plugin.version>
         <nohttp-checkstyle.version>0.0.11</nohttp-checkstyle.version>
         <profile.api-docs/>
         <profile.e2e/>
