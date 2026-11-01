@@ -102,7 +102,7 @@
     "@fortawesome/free-solid-svg-icons": "^7.3.0",
     "@ng-bootstrap/ng-bootstrap": "^21.0.0",
     "@ngx-translate/core": "15.0.0",
-    "@ngx-translate/http-loader": "8.0.0",
+    "@ngx-translate/http-loader": "18.1.0",
     "@popperjs/core": "2.11.8",
     "bootstrap": "5.3.8",
     "dayjs": "1.11.10",
