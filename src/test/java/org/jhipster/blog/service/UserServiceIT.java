@@ -15,9 +15,9 @@ import org.jhipster.blog.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.auditing.AuditingHandler;
 import org.springframework.data.auditing.DateTimeProvider;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.transaction.annotation.Transactional;
 import tech.jhipster.security.RandomUtil;
 
@@ -49,7 +49,7 @@ class UserServiceIT {
     @Autowired
     private AuditingHandler auditingHandler;
 
-    @MockBean
+    @MockitoBean
     private DateTimeProvider dateTimeProvider;
 
     private User user;

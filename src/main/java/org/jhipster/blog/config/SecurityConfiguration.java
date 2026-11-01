@@ -1,7 +1,6 @@
 package org.jhipster.blog.config;
 
 import static org.springframework.security.config.Customizer.withDefaults;
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 import org.jhipster.blog.security.*;
 import org.jhipster.blog.web.filter.SpaWebFilter;
@@ -22,8 +21,7 @@ import org.springframework.security.oauth2.server.resource.web.access.BearerToke
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
-import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
-import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import tech.jhipster.config.JHipsterConstants;
 import tech.jhipster.config.JHipsterProperties;
 
@@ -46,7 +44,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, PathPatternRequestMatcher.Builder mvc) throws Exception {
         http
             .cors(withDefaults())
             .csrf(csrf -> csrf.disable())
@@ -65,26 +63,26 @@ public class SecurityConfiguration {
             .authorizeHttpRequests(authz ->
                 // prettier-ignore
                 authz
-                    .requestMatchers(mvc.pattern("/index.html"), mvc.pattern("/*.js"), mvc.pattern("/*.txt"), mvc.pattern("/*.json"), mvc.pattern("/*.map"), mvc.pattern("/*.css")).permitAll()
-                    .requestMatchers(mvc.pattern("/*.ico"), mvc.pattern("/*.png"), mvc.pattern("/*.svg"), mvc.pattern("/*.webapp")).permitAll()
-                    .requestMatchers(mvc.pattern("/app/**")).permitAll()
-                    .requestMatchers(mvc.pattern("/i18n/**")).permitAll()
-                    .requestMatchers(mvc.pattern("/content/**")).permitAll()
-                    .requestMatchers(mvc.pattern("/swagger-ui/**")).permitAll()
-                    .requestMatchers(mvc.pattern(HttpMethod.POST, "/api/authenticate")).permitAll()
-                    .requestMatchers(mvc.pattern(HttpMethod.GET, "/api/authenticate")).permitAll()
-                    .requestMatchers(mvc.pattern("/api/register")).permitAll()
-                    .requestMatchers(mvc.pattern("/api/activate")).permitAll()
-                    .requestMatchers(mvc.pattern("/api/account/reset-password/init")).permitAll()
-                    .requestMatchers(mvc.pattern("/api/account/reset-password/finish")).permitAll()
-                    .requestMatchers(mvc.pattern("/api/admin/**")).hasAuthority(AuthoritiesConstants.ADMIN)
-                    .requestMatchers(mvc.pattern("/api/**")).authenticated()
-                    .requestMatchers(mvc.pattern("/v3/api-docs/**")).hasAuthority(AuthoritiesConstants.ADMIN)
-                    .requestMatchers(mvc.pattern("/management/health")).permitAll()
-                    .requestMatchers(mvc.pattern("/management/health/**")).permitAll()
-                    .requestMatchers(mvc.pattern("/management/info")).permitAll()
-                    .requestMatchers(mvc.pattern("/management/prometheus")).permitAll()
-                    .requestMatchers(mvc.pattern("/management/**")).hasAuthority(AuthoritiesConstants.ADMIN)
+                    .requestMatchers(mvc.matcher("/index.html"), mvc.matcher("/*.js"), mvc.matcher("/*.txt"), mvc.matcher("/*.json"), mvc.matcher("/*.map"), mvc.matcher("/*.css")).permitAll()
+                    .requestMatchers(mvc.matcher("/*.ico"), mvc.matcher("/*.png"), mvc.matcher("/*.svg"), mvc.matcher("/*.webapp")).permitAll()
+                    .requestMatchers(mvc.matcher("/app/**")).permitAll()
+                    .requestMatchers(mvc.matcher("/i18n/**")).permitAll()
+                    .requestMatchers(mvc.matcher("/content/**")).permitAll()
+                    .requestMatchers(mvc.matcher("/swagger-ui/**")).permitAll()
+                    .requestMatchers(mvc.matcher(HttpMethod.POST, "/api/authenticate")).permitAll()
+                    .requestMatchers(mvc.matcher(HttpMethod.GET, "/api/authenticate")).permitAll()
+                    .requestMatchers(mvc.matcher("/api/register")).permitAll()
+                    .requestMatchers(mvc.matcher("/api/activate")).permitAll()
+                    .requestMatchers(mvc.matcher("/api/account/reset-password/init")).permitAll()
+                    .requestMatchers(mvc.matcher("/api/account/reset-password/finish")).permitAll()
+                    .requestMatchers(mvc.matcher("/api/admin/**")).hasAuthority(AuthoritiesConstants.ADMIN)
+                    .requestMatchers(mvc.matcher("/api/**")).authenticated()
+                    .requestMatchers(mvc.matcher("/v3/api-docs/**")).hasAuthority(AuthoritiesConstants.ADMIN)
+                    .requestMatchers(mvc.matcher("/management/health")).permitAll()
+                    .requestMatchers(mvc.matcher("/management/health/**")).permitAll()
+                    .requestMatchers(mvc.matcher("/management/info")).permitAll()
+                    .requestMatchers(mvc.matcher("/management/prometheus")).permitAll()
+                    .requestMatchers(mvc.matcher("/management/**")).hasAuthority(AuthoritiesConstants.ADMIN)
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .exceptionHandling(exceptions ->
@@ -94,13 +92,13 @@ public class SecurityConfiguration {
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
         if (env.acceptsProfiles(Profiles.of(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT))) {
-            http.authorizeHttpRequests(authz -> authz.requestMatchers(antMatcher("/h2-console/**")).permitAll());
+            http.authorizeHttpRequests(authz -> authz.requestMatchers(mvc.matcher("/h2-console/**")).permitAll());
         }
         return http.build();
     }
 
     @Bean
-    MvcRequestMatcher.Builder mvc(HandlerMappingIntrospector introspector) {
-        return new MvcRequestMatcher.Builder(introspector);
+    PathPatternRequestMatcher.Builder mvc() {
+        return PathPatternRequestMatcher.withDefaults();
     }
 }

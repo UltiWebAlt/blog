@@ -1,7 +1,7 @@
 package org.jhipster.blog.security;
 
+import jakarta.validation.Validator;
 import java.util.*;
-import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 import org.jhipster.blog.domain.Authority;
 import org.jhipster.blog.domain.User;
 import org.jhipster.blog.repository.UserRepository;
@@ -24,8 +24,11 @@ public class DomainUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public DomainUserDetailsService(UserRepository userRepository) {
+    private final Validator validator;
+
+    public DomainUserDetailsService(UserRepository userRepository, Validator validator) {
         this.userRepository = userRepository;
+        this.validator = validator;
     }
 
     @Override
@@ -33,7 +36,7 @@ public class DomainUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(final String login) {
         log.debug("Authenticating {}", login);
 
-        if (new EmailValidator().isValid(login, null)) {
+        if (validator.validateValue(User.class, "email", login).isEmpty()) {
             return userRepository
                 .findOneWithAuthoritiesByEmailIgnoreCase(login)
                 .map(user -> createSpringSecurityUser(login, user))
