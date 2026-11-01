@@ -3,9 +3,6 @@ package org.jhipster.blog.web.rest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -22,6 +19,8 @@ import org.hamcrest.TypeSafeMatcher;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Utility class for testing REST controllers.
@@ -31,11 +30,10 @@ public final class TestUtil {
     private static final ObjectMapper mapper = createObjectMapper();
 
     private static ObjectMapper createObjectMapper() {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(SerializationFeature.WRITE_DURATIONS_AS_TIMESTAMPS, false);
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-        mapper.registerModule(new JavaTimeModule());
-        return mapper;
+        return JsonMapper
+            .builder()
+            .changeDefaultPropertyInclusion(inclusion -> inclusion.withValueInclusion(JsonInclude.Include.NON_EMPTY))
+            .build();
     }
 
     /**

@@ -24,7 +24,8 @@ In the project root, JHipster generates configuration files for tools like git, 
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
 
-1. [Node.js][]: We use Node to run a development web server and build the project.
+1. [Java JDK 21][]: The backend requires Java 21.
+2. [Node.js][]: We use Node 24 to run a development web server and build the project.
    Depending on your system, you can install Node either from source or as a pre-packaged bundle.
 
 After installing Node, you should be able to run the following command to install development tools.
@@ -278,6 +279,7 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [Code quality page]: https://www.jhipster.tech/documentation-archive/v8.1.0/code-quality/
 [Setting up Continuous Integration]: https://www.jhipster.tech/documentation-archive/v8.1.0/setting-up-ci/
 [Node.js]: https://nodejs.org/
+[Java JDK 21]: https://adoptium.net/temurin/releases/?version=21
 [NPM]: https://www.npmjs.com/
 [Webpack]: https://webpack.github.io/
 [BrowserSync]: https://www.browsersync.io/

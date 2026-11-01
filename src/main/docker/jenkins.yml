@@ -3,7 +3,7 @@ include:
   - ./sonar.yml
 services:
   jenkins:
-    image: jenkins/jenkins:lts-jdk17-node18
+    image: jenkins/jenkins:lts-jdk21-node24
     ports:
       - 49001:8080
       - 50000:50000
