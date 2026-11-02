@@ -45,6 +45,10 @@ module.exports = tseslint.config(
     },
     processor: angular.processInlineTemplates,
     rules: {
+      // Keep the existing constructor injection, modules, and eager change detection.
+      '@angular-eslint/prefer-inject': 'off',
+      '@angular-eslint/prefer-on-push-component-change-detection': 'off',
+      '@angular-eslint/prefer-standalone': 'off',
       '@angular-eslint/component-selector': ['error', { type: 'element', prefix: 'jhi', style: 'kebab-case' }],
       '@angular-eslint/directive-selector': ['error', { type: 'attribute', prefix: 'jhi', style: 'camelCase' }],
       '@angular-eslint/relative-url-prefix': 'error',

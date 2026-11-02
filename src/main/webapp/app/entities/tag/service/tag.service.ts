@@ -57,7 +57,7 @@ export class TagService {
   addTagToCollectionIfMissing<Type extends Pick<ITag, 'id'>>(tagCollection: Type[], ...tagsToCheck: (Type | null | undefined)[]): Type[] {
     const tags: Type[] = tagsToCheck.filter(isPresent);
     if (tags.length > 0) {
-      const tagCollectionIdentifiers = tagCollection.map(tagItem => this.getTagIdentifier(tagItem)!);
+      const tagCollectionIdentifiers = tagCollection.map(tagItem => this.getTagIdentifier(tagItem));
       const tagsToAdd = tags.filter(tagItem => {
         const tagIdentifier = this.getTagIdentifier(tagItem);
         if (tagCollectionIdentifiers.includes(tagIdentifier)) {

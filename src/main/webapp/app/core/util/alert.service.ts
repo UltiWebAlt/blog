@@ -60,8 +60,8 @@ export class AlertService {
       // if translation key exists
       if (translatedMessage !== `${translationNotFoundMessage}[${alert.translationKey}]`) {
         alert.message = translatedMessage;
-      } else if (!alert.message) {
-        alert.message = alert.translationKey;
+      } else {
+        alert.message ??= alert.translationKey;
       }
     }
 

@@ -13,7 +13,7 @@
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { lighthouse, pa11y, prepareAudit } from 'cypress-audit';
 
-export default async (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
+export default async (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions): Promise<Cypress.PluginConfigOptions> => {
   on('before:browser:launch', (browser, launchOptions) => {
     prepareAudit(launchOptions);
     if (browser.name === 'chrome' && browser.isHeadless) {
@@ -25,10 +25,12 @@ export default async (on: Cypress.PluginEvents, config: Cypress.PluginConfigOpti
   // Allows logging with cy.task('log', 'message') or cy.task('table', object)
   on('task', {
     log(message) {
+      // eslint-disable-next-line no-console
       console.log(message);
       return null;
     },
     table(message) {
+      // eslint-disable-next-line no-console
       console.table(message);
       return null;
     },
@@ -37,7 +39,9 @@ export default async (on: Cypress.PluginEvents, config: Cypress.PluginConfigOpti
   on('task', {
     lighthouse: lighthouse(async lighthouseReport => {
       const { default: ReportGenerator } = await import('lighthouse/report/generator/report-generator');
-      !existsSync('target/cypress/') && mkdirSync('target/cypress/', { recursive: true });
+      if (!existsSync('target/cypress/')) {
+        mkdirSync('target/cypress/', { recursive: true });
+      }
       writeFileSync('target/cypress/lhreport.html', ReportGenerator.generateReport(lighthouseReport.lhr, 'html'));
     }),
     pa11y: pa11y(),

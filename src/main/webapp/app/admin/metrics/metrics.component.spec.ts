@@ -45,7 +45,7 @@ describe('MetricsComponent', () => {
           },
         },
       } as unknown as Metrics;
-      const threadDump = { threads: [{ threadName: 'thread 1' } as Thread] } as ThreadDump;
+      const threadDump = { threads: [{ threadName: 'thread 1' } as Thread] };
 
       jest.spyOn(service, 'getMetrics').mockReturnValue(of(metrics));
       jest.spyOn(service, 'threadDump').mockReturnValue(of(threadDump));

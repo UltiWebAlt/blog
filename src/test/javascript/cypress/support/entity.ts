@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-namespace */
-/* eslint-disable @typescript-eslint/no-use-before-define */
 // eslint-disable-next-line spaced-comment
 /// <reference types="cypress" />
 
@@ -22,21 +20,15 @@ export const entityConfirmDeleteButtonSelector = '[data-cy="entityConfirmDeleteB
 // End Specific Selector Attributes for Cypress
 // ***********************************************
 
-Cypress.Commands.add('getEntityHeading', (entityName: string) => {
-  return cy.get(`[data-cy="${entityName}Heading"]`);
-});
+Cypress.Commands.add('getEntityHeading', (entityName: string) => cy.get(`[data-cy="${entityName}Heading"]`));
 
-Cypress.Commands.add('getEntityCreateUpdateHeading', (entityName: string) => {
-  return cy.get(`[data-cy="${entityName}CreateUpdateHeading"]`);
-});
+Cypress.Commands.add('getEntityCreateUpdateHeading', (entityName: string) => cy.get(`[data-cy="${entityName}CreateUpdateHeading"]`));
 
-Cypress.Commands.add('getEntityDetailsHeading', (entityInstanceName: string) => {
-  return cy.get(`[data-cy="${entityInstanceName}DetailsHeading"]`);
-});
+Cypress.Commands.add('getEntityDetailsHeading', (entityInstanceName: string) => cy.get(`[data-cy="${entityInstanceName}DetailsHeading"]`));
 
-Cypress.Commands.add('getEntityDeleteDialogHeading', (entityInstanceName: string) => {
-  return cy.get(`[data-cy="${entityInstanceName}DeleteDialogHeading"]`);
-});
+Cypress.Commands.add('getEntityDeleteDialogHeading', (entityInstanceName: string) =>
+  cy.get(`[data-cy="${entityInstanceName}DeleteDialogHeading"]`),
+);
 
 Cypress.Commands.add('setFieldImageAsBytesOfEntity', (fieldName: string, fileName: string, mimeType: string) => {
   // fileName is the image which you have already put in cypress fixture folder
@@ -55,9 +47,9 @@ Cypress.Commands.add('setFieldImageAsBytesOfEntity', (fieldName: string, fileNam
     });
 });
 
-Cypress.Commands.add('setFieldSelectToLastOfEntity', (fieldName: string) => {
-  return cy.get(`[data-cy="${fieldName}"]`).then(select => {
-    const selectSize = (select[0] as HTMLSelectElement)?.options?.length || Number(select.attr('size')) || 0;
+Cypress.Commands.add('setFieldSelectToLastOfEntity', (fieldName: string) =>
+  cy.get(`[data-cy="${fieldName}"]`).then(select => {
+    const selectSize = (select[0] as HTMLSelectElement).options.length || Number(select.attr('size')) || 0;
     if (selectSize > 0) {
       return cy.get(`[data-cy="${fieldName}"] option`).then((options: JQuery<HTMLElement>) => {
         const elements = [...options].map((o: HTMLElement) => (o as HTMLOptionElement).label);
@@ -68,8 +60,8 @@ Cypress.Commands.add('setFieldSelectToLastOfEntity', (fieldName: string) => {
     } else {
       return cy.get(`[data-cy="${fieldName}"]`).type('{downarrow}');
     }
-  });
-});
+  }),
+);
 
 declare global {
   namespace Cypress {

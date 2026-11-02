@@ -60,7 +60,7 @@ export class BlogService {
   ): Type[] {
     const blogs: Type[] = blogsToCheck.filter(isPresent);
     if (blogs.length > 0) {
-      const blogCollectionIdentifiers = blogCollection.map(blogItem => this.getBlogIdentifier(blogItem)!);
+      const blogCollectionIdentifiers = blogCollection.map(blogItem => this.getBlogIdentifier(blogItem));
       const blogsToAdd = blogs.filter(blogItem => {
         const blogIdentifier = this.getBlogIdentifier(blogItem);
         if (blogCollectionIdentifiers.includes(blogIdentifier)) {

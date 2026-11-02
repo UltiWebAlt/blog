@@ -51,17 +51,15 @@ export class BlogFormService {
   }
 
   getBlog(form: BlogFormGroup): IBlog | NewBlog {
-    return form.getRawValue() as IBlog | NewBlog;
+    return form.getRawValue();
   }
 
   resetForm(form: BlogFormGroup, blog: BlogFormGroupInput): void {
     const blogRawValue = { ...this.getFormDefaults(), ...blog };
-    form.reset(
-      {
-        ...blogRawValue,
-        id: { value: blogRawValue.id, disabled: true },
-      } as any /* cast to workaround https://github.com/angular/angular/issues/46458 */,
-    );
+    form.reset({
+      ...blogRawValue,
+      id: { value: blogRawValue.id, disabled: true },
+    });
   }
 
   private getFormDefaults(): BlogFormDefaults {

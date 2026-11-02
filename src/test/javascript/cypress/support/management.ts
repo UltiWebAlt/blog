@@ -1,14 +1,11 @@
-/* eslint-disable @typescript-eslint/no-namespace */
-/* eslint-disable @typescript-eslint/no-use-before-define */
-
-Cypress.Commands.add('getManagementInfo', () => {
-  return cy
+Cypress.Commands.add('getManagementInfo', () =>
+  cy
     .request({
       method: 'GET',
       url: '/management/info',
     })
-    .then(response => response.body);
-});
+    .then(response => cy.wrap(response.body)),
+);
 
 declare global {
   namespace Cypress {

@@ -45,17 +45,15 @@ export class TagFormService {
   }
 
   getTag(form: TagFormGroup): ITag | NewTag {
-    return form.getRawValue() as ITag | NewTag;
+    return form.getRawValue();
   }
 
   resetForm(form: TagFormGroup, tag: TagFormGroupInput): void {
     const tagRawValue = { ...this.getFormDefaults(), ...tag };
-    form.reset(
-      {
-        ...tagRawValue,
-        id: { value: tagRawValue.id, disabled: true },
-      } as any /* cast to workaround https://github.com/angular/angular/issues/46458 */,
-    );
+    form.reset({
+      ...tagRawValue,
+      id: { value: tagRawValue.id, disabled: true },
+    });
   }
 
   private getFormDefaults(): TagFormDefaults {

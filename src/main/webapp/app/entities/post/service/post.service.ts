@@ -85,7 +85,7 @@ export class PostService {
   ): Type[] {
     const posts: Type[] = postsToCheck.filter(isPresent);
     if (posts.length > 0) {
-      const postCollectionIdentifiers = postCollection.map(postItem => this.getPostIdentifier(postItem)!);
+      const postCollectionIdentifiers = postCollection.map(postItem => this.getPostIdentifier(postItem));
       const postsToAdd = posts.filter(postItem => {
         const postIdentifier = this.getPostIdentifier(postItem);
         if (postCollectionIdentifiers.includes(postIdentifier)) {
