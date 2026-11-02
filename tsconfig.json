@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": ".",
     "baseUrl": "src/main/webapp/",
     "ignoreDeprecations": "6.0",
     "outDir": "./target/out-tsc/root",
