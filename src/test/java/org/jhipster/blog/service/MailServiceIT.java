@@ -24,8 +24,10 @@ import org.jhipster.blog.config.Constants;
 import org.jhipster.blog.domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSendException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -36,6 +38,7 @@ import tech.jhipster.config.JHipsterProperties;
  * Integration tests for {@link MailService}.
  */
 @IntegrationTest
+@ExtendWith(MockitoExtension.class)
 class MailServiceIT {
 
     private static final String[] languages = {

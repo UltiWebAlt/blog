@@ -1066,7 +1066,7 @@
             <dependencies>
                 <dependency>
                     <groupId>org.postgresql</groupId>
-                    <artifactId>testcontainers-postgresql</artifactId>
+                    <artifactId>postgresql</artifactId>
                 </dependency>
             </dependencies>
         </profile>
