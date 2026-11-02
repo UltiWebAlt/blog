@@ -140,7 +140,7 @@
     "folder-hash": "4.0.4",
     "generator-jhipster": "8.1.0",
     "globals": "^17.5.0",
-    "husky": "8.0.3",
+    "husky": "9.1.7",
     "jest": "^30.0.0",
     "jest-date-mock": "1.0.8",
     "jest-environment-jsdom": "^30.0.0",
