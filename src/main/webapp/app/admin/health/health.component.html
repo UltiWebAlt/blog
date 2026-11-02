@@ -38,9 +38,14 @@
               </td>
               <td class="text-center">
                 @if (componentHealth.value!.details) {
-                  <a class="hand" (click)="showHealth({ key: componentHealth.key, value: componentHealth.value! })">
+                  <button
+                    type="button"
+                    class="btn btn-link hand p-0"
+                    aria-label="View health details"
+                    (click)="showHealth({ key: componentHealth.key, value: componentHealth.value! })"
+                  >
                     <fa-icon icon="eye"></fa-icon>
-                  </a>
+                  </button>
                 }
               </td>
             </tr>
