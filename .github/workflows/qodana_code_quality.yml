@@ -20,10 +20,15 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
       - name: Qodana Scan
         uses: JetBrains/qodana-action@v2026.2
         with:
-          args: --config,.github/qodana.yaml
+          args: --config .github/qodana.yaml --within-docker false
+          # Run Maven on the configured JDK 21 runner instead of the linter container JDK.
           pr-mode: false
           use-caches: true
           post-pr-comment: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
