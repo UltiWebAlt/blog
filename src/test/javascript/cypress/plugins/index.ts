@@ -12,8 +12,27 @@
 // the project's config changing)
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { lighthouse, pa11y, prepareAudit } from 'cypress-audit';
+import webpackPreprocessor from '@cypress/webpack-preprocessor';
 
 export default async (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions): Promise<Cypress.PluginConfigOptions> => {
+  // Use the project's TS6-compatible loader instead of Cypress 13's bundled loader.
+  on(
+    'file:preprocessor',
+    webpackPreprocessor({
+      webpackOptions: {
+        resolve: { extensions: ['.ts', '.js', '.json'] },
+        module: {
+          rules: [
+            {
+              test: /\.ts$/,
+              exclude: /node_modules/,
+              use: [{ loader: 'ts-loader', options: { transpileOnly: true } }],
+            },
+          ],
+        },
+      },
+    }),
+  );
   on('before:browser:launch', (browser, launchOptions) => {
     prepareAudit(launchOptions);
     if (browser.name === 'chrome' && browser.isHeadless) {
