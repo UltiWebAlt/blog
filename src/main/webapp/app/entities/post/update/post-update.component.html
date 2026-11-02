@@ -70,11 +70,17 @@
         <div class="mb-3">
           <label class="form-label" jhiTranslate="blogApp.post.blog" for="field_blog">Blog</label>
           <select class="form-control" id="field_blog" data-cy="blog" name="blog" formControlName="blog" [compareWith]="compareBlog">
-            <option [ngValue]="null"></option>
+            <option [ngValue]="null" disabled>Select a blog</option>
             @for (blogOption of blogsSharedCollection; track $index) {
               <option [ngValue]="blogOption">{{ blogOption.name }}</option>
             }
           </select>
+          @if (blogsSharedCollection.length === 0) {
+            <small class="form-text text-muted">
+              Create a blog before adding a post.
+              <a [routerLink]="['/blog/new']">Create a blog</a>
+            </small>
+          }
         </div>
 
         <div class="mb-3">

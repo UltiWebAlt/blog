@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
@@ -22,7 +22,7 @@ import { PostFormService, PostFormGroup } from './post-form.service';
   selector: 'jhi-post-update',
   templateUrl: './post-update.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [SharedModule, FormsModule, ReactiveFormsModule],
+  imports: [SharedModule, FormsModule, ReactiveFormsModule, RouterLink],
 })
 export class PostUpdateComponent implements OnInit {
   isSaving = false;

@@ -64,23 +64,23 @@ export class PostFormService {
       date: new FormControl(postRawValue.date, {
         validators: [Validators.required],
       }),
-      blog: new FormControl(postRawValue.blog),
+      blog: new FormControl(postRawValue.blog, {
+        validators: [Validators.required],
+      }),
       tags: new FormControl(postRawValue.tags ?? []),
     });
   }
 
   getPost(form: PostFormGroup): IPost | NewPost {
-    return this.convertPostRawValueToPost(form.getRawValue() as PostFormRawValue | NewPostFormRawValue);
+    return this.convertPostRawValueToPost(form.getRawValue());
   }
 
   resetForm(form: PostFormGroup, post: PostFormGroupInput): void {
     const postRawValue = this.convertPostToPostRawValue({ ...this.getFormDefaults(), ...post });
-    form.reset(
-      {
-        ...postRawValue,
-        id: { value: postRawValue.id, disabled: true },
-      } as any /* cast to workaround https://github.com/angular/angular/issues/46458 */,
-    );
+    form.reset({
+      ...postRawValue,
+      id: { value: postRawValue.id, disabled: true },
+    });
   }
 
   private getFormDefaults(): PostFormDefaults {
